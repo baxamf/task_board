@@ -1,6 +1,12 @@
 .container {
   width: 100%;
-  padding: 2rem;
   display: grid;
+  gap: 2rem;
   place-items: center;
+}
+
+@media screen and (max-width: 50em) {
+  .container {
+    gap: 0;
+  }
 }

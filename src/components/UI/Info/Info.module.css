@@ -1,0 +1,12 @@
+.text {
+  display: flex;
+  padding: 2rem 3rem;
+  gap: 1rem;
+  letter-spacing: 3px;
+  color: var(--light);
+  align-items: center;
+}
+
+.text svg {
+  font-size: 2rem;
+}

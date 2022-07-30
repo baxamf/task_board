@@ -14,8 +14,12 @@ export default function Form({ add }) {
 
   return (
     <form onSubmit={addOnSubmit} className={styles.primary}>
-      <Input changeInput={(e) => setTitle(e.target.value)} value={title} />
       <Button>+ Add task</Button>
+      <Input
+        changeInput={(e) => setTitle(e.target.value)}
+        value={title}
+        placeholder="You're lazy. Start do something!"
+      />
     </form>
   );
 }

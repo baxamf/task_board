@@ -8,5 +8,14 @@
 }
 
 .container ul:not(:last-child) {
-  border-right: 1px solid var(--accent);
+  border-right: var(--border);
+}
+
+@media screen and (max-width: 50em) {
+  .container {
+    flex-direction: column;
+  }
+  .container ul:not(:last-child) {
+    border-bottom: var(--border);
+  }
 }

@@ -1,6 +1,36 @@
 .tasks {
   list-style: none;
+  padding-block: 3rem;
   display: grid;
-  justify-content: center;
-  gap: 1rem;
+  justify-items: center;
+  gap: 2rem;
+}
+
+.new {
+  --color: var(--active);
+}
+
+.in_progress {
+  --color: var(--accent);
+}
+
+.done {
+  --color: var(--light);
+}
+
+.tasks svg {
+  color: var(--color);
+  font-size: 4rem;
+  margin-bottom: 2rem;
+}
+
+@media screen and (max-width: 50em) {
+  .tasks {
+    grid-auto-flow: column;
+    place-items: center;
+  }
+
+  .tasks svg {
+    margin: 0;
+  }
 }

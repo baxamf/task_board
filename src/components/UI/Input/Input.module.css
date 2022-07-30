@@ -1,11 +1,19 @@
 .primary {
   all: unset;
   padding: 0.5rem 1.5rem;
-  background-color: rgb(191, 202, 198);
-  color: #1a2723;
+  color: var(--light);
   transition: background-color 0.2s ease;
+  border-bottom: var(--border);
+  caret-color: var(--light);
+  letter-spacing: 4px;
 }
 
-.primary:focus {
-  background-color: rgb(231, 245, 240);
+.primary::placeholder {
+  font-size: 1.25rem;
+}
+
+@media screen and (max-width: 50em) {
+  .primary::placeholder {
+    font-size: 0.85rem;
+  }
 }

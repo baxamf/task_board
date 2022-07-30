@@ -1,9 +1,19 @@
 .t {
+  position: relative;
   width: 10rem;
   height: 10rem;
   display: grid;
   place-content: center;
-  background-color: var(--accent);
+  background-color: var(--color);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.t span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
 }
 
 .t textarea {

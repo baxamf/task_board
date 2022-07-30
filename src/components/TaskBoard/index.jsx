@@ -3,7 +3,9 @@ import Queries from "../../api";
 import BoardColumns from "../BoardColumns";
 import Form from "../Form";
 import useAsync from "../hooks";
+import Info from "../UI/Info/Info";
 import styles from "./TaskBoard.module.css";
+import { TbDragDrop } from "react-icons/tb";
 
 export default function TaskBoard() {
   const { tasks, run, setTasks } = useAsync(Queries.get);
@@ -12,20 +14,7 @@ export default function TaskBoard() {
     run();
   }, []);
 
-  const newTasks = useMemo(
-    () => tasks.filter((tasks) => tasks.status === "new"),
-    [tasks]
-  );
-  const inProgressTasks = useMemo(
-    () => tasks.filter((tasks) => tasks.status === "in_progress"),
-    [tasks]
-  );
-  const doneTasks = useMemo(
-    () => tasks.filter((tasks) => tasks.status === "done"),
-    [tasks]
-  );
-
-  const addTask = useCallback(
+  const cb_addTask = useCallback(
     (title) => {
       const newTask = { title, status: "new" };
       Queries.add(newTask).then((resp) => {
@@ -35,7 +24,7 @@ export default function TaskBoard() {
     [tasks]
   );
 
-  const deleteTask = useCallback(
+  const cb_deleteTask = useCallback(
     (id) => {
       Queries.del(id).then(() => {
         const newTasks = tasks.filter((task) => task.id !== id);
@@ -60,11 +49,12 @@ export default function TaskBoard() {
 
   return (
     <div className={styles.container}>
-      <Form add={addTask} />
-      <BoardColumns
-        tasks={{ newTasks, inProgressTasks, doneTasks }}
-        handlers={{ deleteTask, cb_editTask }}
-      />
+      <Form add={cb_addTask} />
+      <Info>
+        <TbDragDrop />
+        Drag and drop task from one to another stage
+      </Info>
+      <BoardColumns tasks={tasks} callback={{ cb_deleteTask, cb_editTask }} />
     </div>
   );
 }

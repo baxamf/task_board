@@ -1,15 +1,14 @@
 import Task from "../Task";
 import styles from "./Column.module.css";
 
-export default function Column({ tasks, handlers, id, drop, drag }) {
+export default function Column({ children, tasks, callback, id, drop, drag }) {
   function dropHandler(e) {
     drop(id);
   }
-
   return (
     <ul
       id={id}
-      className={styles.tasks}
+      className={`${styles.tasks} ${styles[id]}`}
       onDrop={dropHandler}
       onDragOver={(e) => {
         e.preventDefault();
@@ -19,8 +18,9 @@ export default function Column({ tasks, handlers, id, drop, drag }) {
         e.stopPropagation();
       }}
     >
+      {children}
       {tasks.map((task) => (
-        <Task key={task.id} task={task} handlers={handlers} drag={drag} />
+        <Task key={task.id} task={task} callback={callback} drag={drag} />
       ))}
     </ul>
   );

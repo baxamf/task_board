@@ -1,12 +1,27 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, useMemo } from "react";
 import Column from "../Column";
 import styles from "./BoardColumns.module.css";
+import { BiTaskX } from "react-icons/bi";
+import { BiTask } from "react-icons/bi";
+import { BsGearFill } from "react-icons/bs";
 
-export default function BoardColumns({ tasks, handlers }) {
-  const { newTasks, inProgressTasks, doneTasks } = tasks;
-  const { cb_editTask } = handlers;
+export default function BoardColumns({ tasks, callback }) {
+  const { cb_editTask } = callback;
 
   const [dragTask, setDragTask] = useState({});
+
+  const newTasks = useMemo(
+    () => tasks.filter((tasks) => tasks.status === "new"),
+    [tasks]
+  );
+  const inProgressTasks = useMemo(
+    () => tasks.filter((tasks) => tasks.status === "in_progress"),
+    [tasks]
+  );
+  const doneTasks = useMemo(
+    () => tasks.filter((tasks) => tasks.status === "done"),
+    [tasks]
+  );
 
   const onDragTask = useCallback(
     (task) => {
@@ -27,23 +42,29 @@ export default function BoardColumns({ tasks, handlers }) {
         drag={onDragTask}
         drop={dropBoard}
         tasks={newTasks}
-        handlers={handlers}
+        callback={callback}
         id={"new"}
-      />
+      >
+        <BiTaskX />
+      </Column>
       <Column
         drag={onDragTask}
         drop={dropBoard}
         tasks={inProgressTasks}
-        handlers={handlers}
+        callback={callback}
         id={"in_progress"}
-      />
+      >
+        <BsGearFill />
+      </Column>
       <Column
         drag={onDragTask}
         drop={dropBoard}
         tasks={doneTasks}
-        handlers={handlers}
+        callback={callback}
         id={"done"}
-      />
+      >
+        <BiTask />
+      </Column>
     </div>
   );
 }

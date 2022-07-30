@@ -1,9 +1,9 @@
 import { useState } from "react";
 import styles from "./Task.module.css";
 
-export default function Task({ task, handlers, drag }) {
-  const { deleteTask } = handlers;
-  const { cb_editTask } = handlers;
+export default function Task({ task, callback, drag }) {
+  const { cb_deleteTask } = callback;
+  const { cb_editTask } = callback;
 
   const [editTask, setEditTask] = useState("");
 
@@ -14,14 +14,13 @@ export default function Task({ task, handlers, drag }) {
   };
 
   const del = (e) => {
-    e.preventDefault();
-    deleteTask(task.id);
+    e.stopPropagation();
+    cb_deleteTask(task.id);
   };
 
   return (
     <li
       onClick={() => setEditTask(task.title)}
-      onContextMenu={del}
       className={styles.t}
       draggable="true"
       onDragEnd={(e) => {
@@ -32,6 +31,7 @@ export default function Task({ task, handlers, drag }) {
         drag(task);
       }}
     >
+      <span onClick={del}>X</span>
       {editTask ? (
         <textarea
           onChange={(e) => setEditTask(e.target.value)}

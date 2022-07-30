@@ -9,9 +9,9 @@ export default function Input({ value, changeInput, placeholder }) {
       type="text"
       placeholder={placeholder}
       onFocus={(e) => (e.target.placeholder = "")}
-      // onBlur={(e) => {
-      //   placeholder ? (e.target.placeholder = placeholder) : e.target.focus();
-      // }}
+      onBlur={(e) => {
+        placeholder ? (e.target.placeholder = placeholder) : e.target.focus();
+      }}
     />
   );
 }
