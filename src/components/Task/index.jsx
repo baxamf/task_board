@@ -1,15 +1,15 @@
 import { useState } from "react";
 import styles from "./Task.module.css";
 
-export default function Task({ task, handlers, drop }) {
+export default function Task({ task, handlers, drag }) {
   const { deleteTask } = handlers;
-  const { editTitle } = handlers;
+  const { cb_editTask } = handlers;
 
   const [editTask, setEditTask] = useState("");
 
   const edit = (e) => {
     const newTitle = { title: editTask };
-    editTitle(task.id, newTitle);
+    cb_editTask(task.id, newTitle);
     setEditTask("");
   };
 
@@ -29,7 +29,7 @@ export default function Task({ task, handlers, drop }) {
       }}
       onDragStart={(e) => {
         e.target.style.opacity = "0.5";
-        drop(task);
+        drag(task);
       }}
     >
       {editTask ? (

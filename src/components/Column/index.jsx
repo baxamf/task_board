@@ -1,15 +1,9 @@
-import { useState } from "react";
 import Task from "../Task";
 import styles from "./Column.module.css";
 
-export default function Column({ tasks, handlers, id }) {
-  const [stateTasks, setTasks] = useState(tasks);
-  const dragItem = (dragTask) => {
-    console.log(dragTask);
-  };
-
+export default function Column({ tasks, handlers, id, drop, drag }) {
   function dropHandler(e) {
-    console.log(id);
+    drop(id);
   }
 
   return (
@@ -26,7 +20,7 @@ export default function Column({ tasks, handlers, id }) {
       }}
     >
       {tasks.map((task) => (
-        <Task key={task.id} task={task} handlers={handlers} drop={dragItem} />
+        <Task key={task.id} task={task} handlers={handlers} drag={drag} />
       ))}
     </ul>
   );

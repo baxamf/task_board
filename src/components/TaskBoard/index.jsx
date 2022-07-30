@@ -45,11 +45,10 @@ export default function TaskBoard() {
     [tasks]
   );
 
-  const editTitle = useCallback(
+  const cb_editTask = useCallback(
     (id, updatedTitle) => {
       const item = tasks.find((task) => task.id === id);
       const updatedTask = { ...item, ...updatedTitle };
-      console.log(updatedTask);
       const updatedTasks = tasks.map((task) =>
         task.id === id ? updatedTask : task
       );
@@ -64,7 +63,7 @@ export default function TaskBoard() {
       <Form add={addTask} />
       <BoardColumns
         tasks={{ newTasks, inProgressTasks, doneTasks }}
-        handlers={{ deleteTask, editTitle }}
+        handlers={{ deleteTask, cb_editTask }}
       />
     </div>
   );
