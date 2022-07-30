@@ -1,0 +1,21 @@
+.primary {
+  width: 40vw;
+  padding: 1rem 2rem;
+  background: var(--bg);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  gap: 1rem;
+}
+
+.primary input {
+  flex: 1;
+}
+
+.primary button {
+  background-color: var(--accent);
+  flex-shrink: 0;
+}
+
+.primary button:hover {
+  background-color: var(--active);
+}

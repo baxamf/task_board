@@ -1,0 +1,11 @@
+.primary {
+  all: unset;
+  padding: 0.5rem 1.5rem;
+  background-color: rgb(191, 202, 198);
+  color: #1a2723;
+  transition: background-color 0.2s ease;
+}
+
+.primary:focus {
+  background-color: rgb(231, 245, 240);
+}

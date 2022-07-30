@@ -1,0 +1,11 @@
+.t {
+  width: 10rem;
+  height: 10rem;
+  display: grid;
+  place-content: center;
+  background-color: var(--accent);
+}
+
+.t textarea {
+  all: unset;
+}

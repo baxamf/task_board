@@ -1,0 +1,12 @@
+.container {
+  width: 100%;
+  display: flex;
+}
+
+.container ul {
+  flex: 1;
+}
+
+.container ul:not(:last-child) {
+  border-right: 1px solid var(--accent);
+}

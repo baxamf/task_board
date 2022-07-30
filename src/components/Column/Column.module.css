@@ -1,0 +1,6 @@
+.tasks {
+  list-style: none;
+  display: grid;
+  justify-content: center;
+  gap: 1rem;
+}
