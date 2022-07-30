@@ -1,14 +1,16 @@
 import { useState } from "react";
 import styles from "./Task.module.css";
+import { FaUndo } from "react-icons/fa";
 
 export default function Task({ task, callback, drag }) {
   const { cb_deleteTask } = callback;
   const { cb_editTask } = callback;
 
   const [editTask, setEditTask] = useState("");
+  const [back, setBack] = useState("");
 
-  const edit = (e) => {
-    const newTitle = { title: editTask };
+  const edit = (title) => {
+    const newTitle = { title };
     cb_editTask(task.id, newTitle);
     setEditTask("");
   };
@@ -20,7 +22,10 @@ export default function Task({ task, callback, drag }) {
 
   return (
     <li
-      onClick={() => setEditTask(task.title)}
+      onClick={() => {
+        setEditTask(task.title);
+        setBack(task.title);
+      }}
       className={styles.t}
       draggable="true"
       onDragEnd={(e) => {
@@ -31,11 +36,23 @@ export default function Task({ task, callback, drag }) {
         drag(task);
       }}
     >
+      {back && !editTask ? (
+        <span
+          className={styles.edit}
+          onClick={(e) => {
+            e.stopPropagation();
+            edit(back);
+            setBack("");
+          }}
+        >
+          <FaUndo />
+        </span>
+      ) : null}
       <span onClick={del}>X</span>
       {editTask ? (
         <textarea
           onChange={(e) => setEditTask(e.target.value)}
-          onBlur={edit}
+          onBlur={() => edit(editTask)}
           value={editTask}
         ></textarea>
       ) : (

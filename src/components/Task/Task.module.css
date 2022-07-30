@@ -16,6 +16,17 @@
   cursor: pointer;
 }
 
+.t .edit {
+  left: 0;
+  width: 48px;
+}
+
+.t .edit svg {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--dark);
+}
+
 .t textarea {
   all: unset;
 }
